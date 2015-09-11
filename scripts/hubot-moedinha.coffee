@@ -13,10 +13,10 @@
 
 
 module.exports = (robot) ->
-  robot.respond /moedinha "(.*)"/i, (msg) ->
+  robot.hear /moedinha "(.*)"/i, (msg) ->
     options = msg.match[1].split('" "')
-    msg.reply("Sorteado \"#{ msg.random options }\".")
+    msg.send "Sorteado \"#{ msg.random options }\"! Boa sorte :P"
 
-  robot.respond /moedinha ([^"]+)/i, (msg) ->
+  robot.hear /moedinha ([^"]+)/i, (msg) ->
     options = msg.match[1].split(' ')
-    msg.reply("Sorteado \"#{msg.random options}\".")
+    msg.send "Sorteado \"#{msg.random options}\"! Boa sorte :P"
