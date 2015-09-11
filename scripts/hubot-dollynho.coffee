@@ -9,8 +9,6 @@
 class Dollynho
   constructor: (@robot) ->
     @storage = {}
-    @storage.scores = {}
-    @storage.log    = {}
 
     @increment_responses = [
       "vai ganhar um :dollynho:!",
@@ -39,6 +37,7 @@ class Dollynho
       }
 
   increment: (sender, user) ->
+    @storage.scores = {}
     @storage.scores[user] ?= 0
     @storage.scores[user] += 1
 
@@ -47,6 +46,7 @@ class Dollynho
     @robot.brain.save()
 
   decrement: (sender, user) ->
+    @storage.scores = {}
     @storage.scores[user] ?= 0
     @storage.scores[user] -= 1
 
