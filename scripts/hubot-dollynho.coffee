@@ -5,6 +5,7 @@
 #   <user>++ - Ganha um Dolly.
 #   <user>-- - Deve um Dolly.
 #   hubot conta - Passa a conta.
+#   hubot limpa capivara <user> - Limpa a capivara do usuário.
 
 class Dollynho
   constructor: (@robot) ->
@@ -67,6 +68,10 @@ class Dollynho
 
     s.sort (a, b) -> b.score - a.score
 
+  kill: (sender, user) ->
+    delete @storage[user]
+    @robot.brain.data.dollynho = @storage
+
 module.exports = (robot) ->
   dollynho = new Dollynho robot
 
@@ -91,3 +96,10 @@ module.exports = (robot) ->
       verbiage.push "#{score + 1}. #{user.name} - #{user.score}"
 
     res.send verbiage.join("\n")
+
+  robot.hear /^limpa capivara (\S+[^+:\s])$/i, (res) ->
+    user = res.match[1].toLowerCase()
+    sender = res.message.user.name.toLowerCase()
+
+    dollynho.kill sender, user
+    res.send "#{sender} queima de arquivo concluída!"
