@@ -2,7 +2,7 @@
 #   catch plusplus event and post dollynho's message.
 #
 # Dependencies:
-#   "hubot-plusplus": ">= 0.0.1"
+#   "hubot-plusplus": ">= 1.1.5"
 
 class Dollynho
   constructor: (@robot) ->
@@ -36,4 +36,4 @@ module.exports = (robot) ->
     else
       msg = dollynho.decrementResponse()
 
-    robot.messageRoom room, "#{name} #{msg}"
+    robot.send name, "#{msg}"
