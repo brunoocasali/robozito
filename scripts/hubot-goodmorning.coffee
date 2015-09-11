@@ -8,11 +8,11 @@
 #   None
 #
 # Commands:
-#   bom dia - Response like a boss...
+#   bom dia - Responde com bom dia!
 
 module.exports = (robot) ->
   robot.hear /^bom dia/i, (res) ->
-    responses = [
+    good_morning_responses = [
       "bom dia pra quem?",
       "bom dia! :)",
       "jura que vc está em um bom dia hoje???",
@@ -25,7 +25,22 @@ module.exports = (robot) ->
       "Bom dia! Eu já te disse isso hoje!? Oo",
       "Traz um café pls!",
       "Se achando a pica das galáxias???",
-      "Bom dia é o caralho!"
+      "Bom dia é o caralho!",
+      "Isso é hora????"
     ]
 
-    res.send res.random responses
+    offensive_responses = [
+      "Mano vc está bem??",
+      "tá locão?",
+      "bebeu varsol?",
+      "porra tu acha que eu sou burro???",
+      "vei na boa...",
+      "cara acerta seu relógio!"
+    ]
+
+    h = new Date().getHours();
+
+    if h > 0 && h < 12
+      res.send res.random good_morning_responses
+    else
+      res.send res.random offensive_responses
