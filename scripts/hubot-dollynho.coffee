@@ -31,28 +31,19 @@ class Dollynho
     ]
 
     @robot.brain.on 'loaded', =>
-      @storage = @robot.brain.data.dollynho ||= {
-        scores: {}
-        log: {}
-      }
+      @storage = @robot.brain.data.dollynho
 
   increment: (sender, user) ->
-    @storage.scores = {}
-    @storage.scores[user] ?= 0
-    @storage.scores[user] += 1
+    @storage[user] ?= 0
+    @storage[user] += 1
 
-    @log sender, user, '++'
-
-    @robot.brain.save()
+    @robot.brain.data.dollynho = @storage
 
   decrement: (sender, user) ->
-    @storage.scores = {}
-    @storage.scores[user] ?= 0
-    @storage.scores[user] -= 1
+    @storage[user] ?= 0
+    @storage[user] -= 1
 
-    @log sender, user, '--'
-
-    @robot.brain.save()
+    @robot.brain.data.dollynho = @storage
 
   incrementResponse: ->
      @increment_responses[Math.floor(Math.random() * @increment_responses.length)]
@@ -64,25 +55,17 @@ class Dollynho
      @verbiage_responses[Math.floor(Math.random() * @verbiage_responses.length)]
 
   get: (user)->
-    k = if @storage.scores[user] then @storage.scores[user] else 0
+    k = if @storage[user] then @storage[user] else 0
 
     return k
 
   score: ->
     s = []
 
-    for key, val of @storage.scores
+    for key, val of @storage
       s.push({ name: key, score: val })
 
     s.sort (a, b) -> b.score - a.score
-
-  log: (sender, user, operation)->
-    @storage.log = {}
-    @storage.log[sender] = {}
-    @storage.log[sender][user] = {}
-    @storage.log[sender][user][operation] = {}
-
-    @storage.log[sender][user][operation] = new Date()
 
 module.exports = (robot) ->
   dollynho = new Dollynho robot
