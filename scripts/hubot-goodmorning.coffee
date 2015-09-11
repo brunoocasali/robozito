@@ -25,22 +25,7 @@ module.exports = (robot) ->
       "Bom dia! Eu já te disse isso hoje!? Oo",
       "Traz um café pls!",
       "Se achando a pica das galáxias???",
-      "Bom dia é o caralho!",
       "Isso é hora????"
     ]
 
-    offensive_responses = [
-      "Mano vc está bem??",
-      "tá locão?",
-      "bebeu varsol?",
-      "porra tu acha que eu sou burro???",
-      "vei na boa...",
-      "cara acerta seu relógio!"
-    ]
-
-    h = new Date().getHours();
-
-    if h > 0 && h < 12
-      res.send res.random good_morning_responses
-    else
-      res.send res.random offensive_responses
+    res.send res.random good_morning_responses
