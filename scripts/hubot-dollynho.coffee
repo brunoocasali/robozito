@@ -4,7 +4,7 @@
 # Commands:
 #   <user>++ - Ganha um Dolly.
 #   <user>-- - Deve um Dolly.
-#   hubot conta - Passa a conta.
+#   hubot passa a conta - Passa a conta.
 #   hubot limpa capivara <user> - Limpa a capivara do usuário.
 
 class Dollynho
@@ -28,7 +28,7 @@ class Dollynho
       "um Lannister sempre paga suas dívidas...",
       "olha ae...",
       "cuidado com o SPC...",
-      "conzinha espera pra quem não paga...",
+      "cozinha espera pra quem não paga...",
     ]
 
     @robot.brain.on 'loaded', =>
@@ -89,7 +89,7 @@ module.exports = (robot) ->
     dollynho.decrement sender, user
     res.send "#{user} #{dollynho.decrementResponse()} (Conta: #{dollynho.get(user)})"
 
-  robot.hear /^conta$/i, (res) ->
+  robot.hear /^passa a conta$/i, (res) ->
     verbiage = [dollynho.verbiageResponse()]
 
     for user, score in dollynho.score()
