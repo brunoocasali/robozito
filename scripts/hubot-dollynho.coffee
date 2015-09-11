@@ -4,8 +4,8 @@
 # Commands:
 #   <user>++ - Ganha um Dolly.
 #   <user>-- - Deve um Dolly.
-#   hubot passa a conta - Passa a conta.
-#   hubot limpa capivara <user> - Limpa a capivara do usuário.
+#   passa a conta - Passa a conta.
+#   limpa capivara <user> - Limpa a capivara do usuário.
 
 class Dollynho
   constructor: (@robot) ->

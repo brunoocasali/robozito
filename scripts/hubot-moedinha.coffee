@@ -8,8 +8,8 @@
 #   None
 #
 # Commands:
-#   hubot moedinha "<option 1>" "<option 2>" "<option x>" - Tira na sorte uma opção.
-#   hubot moedinha <option1> <option2> <option3> - Tira na sorte uma opção.
+#   moedinha "<option 1>" "<option 2>" "<option x>" - Tira na sorte uma opção.
+#   moedinha <option1> <option2> <option3> - Tira na sorte uma opção.
 
 
 module.exports = (robot) ->
