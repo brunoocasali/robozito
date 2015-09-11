@@ -119,5 +119,8 @@ module.exports = (robot) ->
     user = res.match[1].toLowerCase()
     sender = res.message.user.name.toLowerCase()
 
-    dollynho.kill sender, user
-    res.send "#{sender} queima de arquivo concluída!"
+    if sender != user
+      dollynho.kill sender, user
+      res.send "#{sender} queima de arquivo concluída!"
+    else
+      res.send "#{sender} #{dollynho.offensiveResponse()}"
