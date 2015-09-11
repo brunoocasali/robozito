@@ -29,6 +29,15 @@ class Dollynho
       "olha ae...",
       "cuidado com o SPC...",
       "cozinha espera pra quem não paga...",
+      "pega logo essa bagaça..."
+    ]
+
+    @offensive_responses = [
+      "tu que me fude ne parceiro!?",
+      "porra velho!",
+      "mano que porra eh essa???",
+      "mano tenho cara de palhaço?",
+      "tah tirando!?!?!?"
     ]
 
     @robot.brain.on 'loaded', =>
@@ -55,6 +64,9 @@ class Dollynho
   verbiageResponse: ->
      @verbiage_responses[Math.floor(Math.random() * @verbiage_responses.length)]
 
+  offensiveResponse: ->
+     @offensive_responses[Math.floor(Math.random() * @offensive_responses.length)]
+
   get: (user)->
     k = if @storage[user] then @storage[user] else 0
 
@@ -79,15 +91,21 @@ module.exports = (robot) ->
     user   = res.match[1].toLowerCase()
     sender = res.message.user.name.toLowerCase()
 
-    dollynho.increment sender, user
-    res.send "#{user} #{dollynho.incrementResponse()} (Conta: #{dollynho.get(user)})"
+    if sender != user
+      dollynho.increment sender, user
+      res.send "#{user} #{dollynho.incrementResponse()} (Conta: #{dollynho.get(user)})"
+    else
+      res.send "#{sender} #{dollynho.offensiveResponse()}"
 
   robot.hear /(\S+[^-:\s])[: ]*--(\s|$)/, (res) ->
     user = res.match[1].toLowerCase()
     sender = res.message.user.name.toLowerCase()
 
-    dollynho.decrement sender, user
-    res.send "#{user} #{dollynho.decrementResponse()} (Conta: #{dollynho.get(user)})"
+    if sender != user
+      dollynho.decrement sender, user
+      res.send "#{user} #{dollynho.decrementResponse()} (Conta: #{dollynho.get(user)})"
+    else
+      res.send "#{sender} #{dollynho.offensiveResponse()}"
 
   robot.hear /^passa a conta$/i, (res) ->
     verbiage = [dollynho.verbiageResponse()]
