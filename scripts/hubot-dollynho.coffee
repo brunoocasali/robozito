@@ -34,4 +34,4 @@ module.exports = (robot) ->
     else
       msg = dollynho.decrementResponse()
 
-    robot.send name, "#{msg}"
+    robot.messageRoom room, "#{name} #{msg}"
