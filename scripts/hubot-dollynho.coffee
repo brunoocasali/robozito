@@ -7,11 +7,11 @@
 class Dollynho
   constructor: (@robot) ->
     @increment_responses = [
-      "vai pagar um Dolly pra galera!", "se prepara pra comprar a fábrica :P", "paga mais um!? :D", "quanta bondade!!! :dollynho:"
+      "vai ganhar um dolly!", "epa está ganhando muito! Dá um pra mim? :P"
     ]
 
     @decrement_responses = [
-      "está perdoado de um Dolly :( poxa queria 1!"
+      "vai pagar um Dolly pra galera!", "se prepara pra comprar a fábrica :P", "paga mais um!? :D", "quanta bondade!!! :dollynho:"
     ]
 
   incrementResponse: ->
@@ -28,8 +28,6 @@ module.exports = (robot) ->
     direction = obj.direction
     room      = obj.room
     reason    = obj.reason
-
-    robot.send direction
 
     if direction == '++'
       msg = dollynho.incrementResponse()
